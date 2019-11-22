@@ -22,5 +22,12 @@
     "bugs": {
         "url": "https://github.com/Crusiris/SCL011-MD-Links/issues"
     },
-    "homepage": "https://github.com/Crusiris/SCL011-MD-Links#readme"
+    "homepage": "https://github.com/Crusiris/SCL011-MD-Links#readme",
+    "dependencies": {
+        "filehound": "^1.17.3",
+        "jes": "^0.6.1"
+    },
+    "devDependencies": {
+        "eslint": "^6.6.0"
+    }
 }
