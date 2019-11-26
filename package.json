@@ -25,7 +25,9 @@
     "homepage": "https://github.com/Crusiris/SCL011-MD-Links#readme",
     "dependencies": {
         "filehound": "^1.17.3",
-        "jes": "^0.6.1"
+        "jes": "^0.6.1",
+        "markdown-it": "^10.0.0",
+        "markdown-link-extractor": "^1.2.2"
     },
     "devDependencies": {
         "eslint": "^6.6.0"

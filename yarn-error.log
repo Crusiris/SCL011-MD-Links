@@ -1,0 +1,59 @@
+Arguments: 
+  /usr/local/bin/node /usr/share/yarn/bin/yarn.js add markdown-link-extractor
+
+PATH: 
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.19.1
+
+Node version: 
+  10.16.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EACCES: permission denied, mkdir '/home/crusiris/Proyectos/Javascript/SCL011-MD-Links/node_modules/markdown-link-extractor'
+
+npm manifest: 
+  {
+      "name": "md-links",
+      "version": "0.1.0",
+      "description": "## Índice",
+      "main": "index.js",
+      "directories": {
+          "test": "test"
+      },
+      "scripts": {
+          "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "repository": {
+          "type": "git",
+          "url": "git+https://github.com/Crusiris/SCL011-MD-Links.git"
+      },
+      "keywords": [
+          "libreria",
+          "developers"
+      ],
+      "author": "Crusiris Nuñez",
+      "license": "ISC",
+      "bugs": {
+          "url": "https://github.com/Crusiris/SCL011-MD-Links/issues"
+      },
+      "homepage": "https://github.com/Crusiris/SCL011-MD-Links#readme",
+      "dependencies": {
+          "filehound": "^1.17.3",
+          "jes": "^0.6.1",
+          "markdown-it": "^10.0.0"
+      },
+      "devDependencies": {
+          "eslint": "^6.6.0"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
