@@ -1,14 +1,18 @@
 "use strict"
 const fs = require("fs"); //Lee todo el contenido de un archivo.
 const pathN = require("path");
-const markdownLinkExtractor = require('markdown-link-extractor'); //Libreria para extraer links
+//const markdownLinkExtractor = require('markdown-link-extractor'); //Libreria para extraer links
+const marked = require('marked'); //Libreria para obtener links, text, file
+
+let path = process.argv[2];
+// convierte en ruta absoluta la ruta ingresada (path.resolve)
+path = pathN.resolve(path);
+path = pathN.normalize(path);
 
 //Funcion  de tipo promesa para leer archivo Markdown
-
-const getLink = () => {
+const fileRead = () => {
     const data = new Promise((resolve, reject) => {
-        let path = process.argv[2];
-        path = pathN.resolve(path);
+
         //Obtengo de forma sincrona el archivo markdown con un metodo de node
         fs.readFile(path, 'utf-8', (err, result) => {
             if (err) {
@@ -18,35 +22,35 @@ const getLink = () => {
         })
     })
     return data;
+
 }
 
+const getLinks = () => {
 
-getLink()
-    .then(data => {
-        console.log(data)
+    const res = new Promise((resolve, reject) => {
+        fileRead()
+            .then(data => {
+                let final;
+                let links = [];
+                let renderer = new marked.Renderer();
+
+                renderer.link = function(href, title, text) {
+
+                    links.push({
+                        href: href,
+                        text: text,
+                        file: path
+
+                    })
+
+                };
+
+                marked(data, { renderer: renderer });
+                resolve(links);
+
+            }).catch(err => reject(err.messsage))
     })
-    .catch(error => {
-        console.error(error.message)
-    });
+    return res;
+}
 
-
-
-// const getLink = () => {
-//     //Obtengo de forma sincrona el archivo markdown con un metodo de node
-//     let markdown = fs.readFileSync('./README.md', 'utf-8');
-//     console.log(markdown);
-
-//     // El archivo markdown es pasado como argumento al módulo extractor de links
-//     let links = markdownLinkExtractor(markdown);
-
-//     // Imprimo todos los links
-//     links.forEach(function(link) {
-//         console.log(link);
-//     });
-// }
-
-
-
-// module.exports = {
-//     getLink
-// };
+getLinks().then(res => console.log(res));
