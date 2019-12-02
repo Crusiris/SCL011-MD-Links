@@ -1,8 +1,9 @@
 "use strict"
 const fs = require("fs"); //Lee todo el contenido de un archivo.
 const pathN = require("path");
-//const markdownLinkExtractor = require('markdown-link-extractor'); //Libreria para extraer links
 const marked = require('marked'); //Libreria para obtener links, text, file
+const https = require('https');
+
 
 let path = process.argv[2];
 // convierte en ruta absoluta la ruta ingresada (path.resolve)
@@ -25,12 +26,13 @@ const fileRead = () => {
 
 }
 
+//Funcion Obtener array de objet
 const getLinks = () => {
 
     const res = new Promise((resolve, reject) => {
         fileRead()
             .then(data => {
-                let final;
+
                 let links = [];
                 let renderer = new marked.Renderer();
 
@@ -46,6 +48,9 @@ const getLinks = () => {
                 };
 
                 marked(data, { renderer: renderer });
+                if (links.length === 0) {
+                    reject(new Error("Este archivo no contiene links"))
+                }
                 resolve(links);
 
             }).catch(err => reject(err.messsage))
@@ -53,4 +58,21 @@ const getLinks = () => {
     return res;
 }
 
-getLinks().then(res => console.log(res));
+//Funcion que crea un array de links
+
+const Links = () => {
+
+    const statistics = new Promise((resolve, reject) => {
+        getLinks()
+            .then(res => {
+                let arraylinks = res.map(item => {
+                    return { href: item.href }
+                })
+                resolve(arraylinks)
+            })
+    })
+    return statistics
+}
+
+
+Links().then(statistics => console.log(statistics))
