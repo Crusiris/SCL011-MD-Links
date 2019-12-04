@@ -96,7 +96,7 @@ const getStatus = (url) => {
         if (isUrl) {
             axios.get(url)
                 .then((result) => {
-                    //console.log(`${result.status} ${url}`);
+                    console.log(`${result.status} ${url}`);
 
                     resolve({
                         code: result.status,
@@ -113,7 +113,7 @@ const getStatus = (url) => {
     return data
 
 }
-console.log(data);
+
 
 const getStatistics = () => {
     const statistics = new Promise((resolve, reject) => {

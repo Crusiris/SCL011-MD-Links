@@ -10,28 +10,28 @@
 //     return pattern.test(str);
 // }
 
-// const getStatus = (url) => {
-//     const data = new Promise((resolve, reject) => {
-//         const isUrl = validURL(url)
-//         if (isUrl) {
-//             axios.get(url)
-//                 .then((result) => {
-//                     console.log(result.status);
-//                     console.log(url);
-//                     resolve({
-//                         code: result.status,
-//                         url
-//                     })
-//                 })
-//                 .catch((err) => {
-//                     console.log(`${err.message}`);
-//                     reject(err.message)
-//                 });
-//         }
+const getStatus = (url) => {
+    const data = new Promise((resolve, reject) => {
+        const isUrl = validURL(url)
+        if (isUrl) {
+            axios.get(url)
+                .then((result) => {
+                    console.log(result.status);
+                    console.log(url);
+                    resolve({
+                        code: result.status,
+                        url
+                    })
+                })
+                .catch((err) => {
+                    console.log(`${err.message}`);
+                    reject(err.message)
+                });
+        }
 
-//     })
-//     return data
-// }
+    })
+    return data
+}
 
 // module.exports = {
 //     getStatus
